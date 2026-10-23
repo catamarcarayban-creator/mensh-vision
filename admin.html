@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | MENSH VISION v2.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{ --red:#d32f2f; --bg:#f8f9fa; --card:#fff; --border:#d1d5db; --radius:14px; --font-h:'Outfit',sans-serif; --font-b:'Plus Jakarta Sans',sans-serif }
+*{box-sizing:border-box;margin:0;padding:0;font-family:var(--font-b)}
+body{background:var(--bg);color:#111;padding:24px}
+header{display:flex;justify-content:space-between;align-items:center;background:#0b0c0e;color:#fff;padding:18px 24px;border-radius:14px;margin-bottom:24px}
+header h1{font-family:var(--font-h);font-weight:900;letter-spacing:-.5px}
+.btn{border:none;padding:10px 18px;border-radius:30px;font-weight:800;cursor:pointer;transition:.2s}
+.btn-primary{background:#000;color:#fff}.btn-primary:hover{background:var(--red)}
+.btn-danger{background:var(--red);color:#fff}
+.btn-ghost{background:#f2f3f5;border:1px solid var(--border)}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:1000px){ .admin-grid{grid-template-columns:1fr} }
+.admin-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.04);margin-bottom:20px}
+.admin-card h4{font-family:var(--font-h);font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:.78rem;font-weight:800;text-transform:uppercase;margin-bottom:6px;letter-spacing:.5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:.88rem}
+.file-upload-box{border:2px dashed var(--border);border-radius:8px;padding:14px;text-align:center;cursor:pointer;background:#fafafa;font-weight:700;font-size:.85rem}
+.admin-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.admin-table th{text-align:left;padding:8px;border-bottom:2px solid #e5e7eb;font-weight:800;text-transform:uppercase;font-size:.72rem;letter-spacing:.5px}
+.admin-table td{padding:8px;border-bottom:1px solid #f0f0f4;vertical-align:middle}
+.btn-edit-sm,.btn-delete-sm{border:none;padding:5px 10px;border-radius:20px;font-size:.72rem;font-weight:800;cursor:pointer}
+.btn-edit-sm{background:#111;color:#fff}.btn-delete-sm{background:#fee2e2;color:#991b1b}
+.toast-container{position:fixed;bottom:24px;right:24px;z-index:5000;display:flex;flex-direction:column;gap:10px}
+.toast{background:#111;color:#fff;padding:12px 18px;border-radius:30px;font-size:.82rem;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateY(20px);opacity:0;transition:all .3s ease}
+.toast.show{transform:translateY(0);opacity:1}
+.login-overlay{position:fixed;inset:0;background:#0b0c0e;display:flex;align-items:center;justify-content:center;z-index:9999}
+.login-card{background:#fff;padding:32px;border-radius:20px;max-width:380px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+#gallery-preview{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="login-overlay" id="login-overlay">
+  <div class="login-card">
+    <div style="font-family:var(--font-h);font-size:1.6rem;font-weight:900;margin-bottom:6px">MENSH VISION<span style="color:var(--red)">.</span></div>
+    <p style="font-size:.85rem;color:#666;margin-bottom:18px;font-weight:700">PANEL ADMIN v2.0 - Acceso Seguro</p>
+    <input id="admin-pass-input" type="password" placeholder="Contraseña admin" style="width:100%;padding:12px;border:1px solid var(--border);border-radius:30px;margin-bottom:12px;text-align:center;font-weight:700">
+    <button class="btn btn-primary" style="width:100%" onclick="verifyAdmin()">🔓 Entrar al Panel</button>
+    <p style="font-size:.7rem;color:#888;margin-top:12px">Por defecto: 1234 (cambiá en Ajustes). Se guarda hasheado con SHA-256.</p>
+    <p style="font-size:.7rem;color:#888;margin-top:8px"><a href="index.html" style="color:#111">← Volver a la tienda</a></p>
+  </div>
+</div>
+
+<header>
+  <h1>⚙️ MENSH VISION | Admin v2.0</h1>
+  <div style="display:flex;gap:10px">
+    <button class="btn btn-ghost" onclick="exportCleanHTML()">📥 Exportar index.html</button>
+    <button class="btn btn-danger" onclick="logoutAdmin()">Cerrar</button>
+  </div>
+</header>
+
+<div class="admin-card">
+  <h4>⚙️ Ajustes Globales & Seguridad</h4>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div>
+      <div class="form-group"><label>WhatsApp (549...)</label><input id="admin-store-phone"></div>
+      <div class="form-group"><label>Alias MercadoPago</label><input id="admin-store-mp-alias"></div>
+      <div class="form-group"><label>Link MercadoPago</label><input id="admin-store-mp-link" placeholder="https://mpago.la/..."></div>
+    </div>
+    <div>
+      <div class="form-group"><label>Banner Anuncio</label><input id="admin-store-banner"></div>
+      <div class="form-group"><label>Nueva Contraseña Admin (se hashea)</label><input id="admin-store-newpass" type="password" placeholder="Dejar vacío para no cambiar"></div>
+      <div class="form-group"><label>Google Script URL</label><input id="admin-script-url" placeholder="https://script.google.com/..."></div>
+    </div>
+  </div>
+  <button class="btn btn-primary" onclick="saveGlobalSettings()">💾 Guardar Ajustes</button>
+</div>
+
+<div class="admin-grid">
+  <div class="admin-card">
+    <h4>📂 Subcategorías</h4>
+    <div class="form-group"><label>Categoría Principal</label><select id="admin-subcat-main-select" onchange="renderSubcatManager()"><option>Clásicos</option><option>Modernos</option><option>Mujer</option><option>Hombre</option><option>Scuderia FERRARI</option><option>Últimos lanzamientos</option><option>Edición Limitada</option></select></div>
+    <div class="form-group"><label>Nueva Subcategoría</label><div style="display:flex;gap:8px"><input id="admin-new-subcat-input" placeholder="Ej. Carbon Fiber"><button class="btn btn-primary" onclick="addSubcategory()">+</button></div></div>
+    <div id="admin-subcats-list" style="max-height:260px;overflow-y:auto;border:1px solid #e2e8f0;border-radius:8px;padding:10px;background:#fafafa"></div>
+  </div>
+
+  <div class="admin-card">
+    <h4>🎬 Video Bienvenida</h4>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><input type="checkbox" id="admin-video-active-toggle" style="width:18px;height:18px"><label for="admin-video-active-toggle" style="font-weight:800;font-size:.85rem">Mostrar popup automático</label></div>
+    <div class="form-group"><label>Subir video MP4 (máx 15MB recomendado)</label><div class="file-upload-box" onclick="document.getElementById('admin-video-file-input').click()">📁 Seleccionar video<input type="file" id="admin-video-file-input" accept="video/mp4,video/webm,video/*" style="display:none" onchange="handleVideoUpload(this)"></div></div>
+    <div class="form-group"><label>URL video MP4</label><input id="admin-video-url-input" placeholder="https://.../video.mp4" oninput="previewVideo(this.value)"></div>
+    <video id="admin-video-preview" muted loop playsinline style="width:100%;height:180px;background:#000;border-radius:8px;display:block;object-fit:cover;margin-bottom:12px"></video>
+    <button class="btn btn-primary" onclick="saveVideoSettings()">💾 Guardar Video</button>
+  </div>
+</div>
+
+<div class="admin-grid">
+  <div class="admin-card">
+    <h4>🖼️ Banners (<span id="admin-slides-count">0</span>)</h4>
+    <form id="admin-slide-form" onsubmit="saveSlide(event)">
+      <input type="hidden" id="admin-slide-index" value="-1">
+      <div class="form-group"><label>Título</label><input id="admin-slide-title" required></div>
+      <div class="form-group"><label>Subtítulo</label><input id="admin-slide-subtitle" required></div>
+      <div class="form-group"><label>Texto Botón</label><input id="admin-slide-btntext" required></div>
+      <div class="form-group"><label>Categoría filtro</label><select id="admin-slide-cat"><option>Todos</option><option>Clásicos</option><option>Modernos</option><option>Mujer</option><option>Hombre</option><option>Scuderia FERRARI</option><option>Últimos lanzamientos</option><option>Edición Limitada</option></select></div>
+      <div class="form-group"><label>Imagen Banner</label><div class="file-upload-box" onclick="document.getElementById('admin-slide-file-input').click()">📁 Seleccionar imagen<input type="file" id="admin-slide-file-input" accept="image/*" style="display:none" onchange="handleSlideUpload(this)"></div><img id="admin-slide-img-preview" style="max-width:100%;height:120px;object-fit:cover;border-radius:6px;margin-top:10px;display:none"><input type="hidden" id="admin-slide-img" required><input id="admin-slide-url-fallback" placeholder="https://...jpg" style="margin-top:8px" oninput="document.getElementById('admin-slide-img').value=this.value"></div>
+      <button class="btn btn-primary">💾 Guardar Banner</button> <button type="button" class="btn btn-ghost" onclick="resetSlideForm()">Cancelar</button>
+    </form>
+    <div style="max-height:300px;overflow-y:auto;margin-top:16px"><table class="admin-table"><thead><tr><th>Vista</th><th>Título</th><th>Acc</th></tr></thead><tbody id="admin-slides-table"></tbody></table></div>
+  </div>
+
+  <div class="admin-card">
+    <h4>📖 Guía Originalidad (<span id="admin-guide-count">0</span>)</h4>
+    <form id="admin-guide-form" onsubmit="saveGuide(event)">
+      <input type="hidden" id="admin-guide-index" value="-1">
+      <div class="form-group"><label>Título</label><input id="admin-guide-title" required></div>
+      <div class="form-group"><label>Descripción</label><textarea id="admin-guide-text" rows="3" required></textarea></div>
+      <div class="form-group"><label>Imagen</label><div class="file-upload-box" onclick="document.getElementById('admin-guide-file-input').click()">📁 Imagen guía<input type="file" id="admin-guide-file-input" accept="image/*" style="display:none" onchange="handleGuideUpload(this)"></div><img id="admin-guide-img-preview" style="max-width:100%;height:100px;object-fit:cover;border-radius:6px;margin-top:8px;display:none"><input type="hidden" id="admin-guide-img" required><input id="admin-guide-url-fallback" placeholder="https://..." style="margin-top:8px" oninput="document.getElementById('admin-guide-img').value=this.value"></div>
+      <button class="btn btn-primary">💾 Guardar Paso</button> <button type="button" class="btn btn-ghost" onclick="resetGuideForm()">Cancelar</button>
+    </form>
+    <div style="max-height:300px;overflow-y:auto;margin-top:16px"><table class="admin-table"><thead><tr><th>Img</th><th>Título</th><th>Acc</th></tr></thead><tbody id="admin-guide-table"></tbody></table></div>
+  </div>
+</div>
+
+<div class="admin-card">
+  <h4>➕ Productos (<span id="admin-prod-count">0</span>) - v2 con colorTags</h4>
+  <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:20px">
+    <form id="admin-product-form" onsubmit="saveProduct(event)">
+      <input type="hidden" id="admin-prod-id">
+      <div class="form-group"><label>Nombre Modelo</label><input id="admin-prod-name" required></div>
+      <div class="form-group"><label>Categorías (múltiple)</label><div id="admin-prod-categories-checkboxes" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px;border:1px solid #d1d5db;border-radius:8px;background:#f8fafc;max-height:180px;overflow-y:auto"></div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="form-group"><label>Precio ARS</label><input id="admin-prod-price" type="number" required></div>
+        <div class="form-group"><label>Badge</label><select id="admin-prod-badge"><option>Clásico</option><option>Nuevo</option><option>Ninguno</option><option>Polarizado</option><option>Más Vendido</option><option>Edición Limitada</option></select></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="form-group"><label>ColorTags (para filtro)</label><select id="admin-prod-colortag"><option value="negro">negro</option><option value="carey">carey</option><option value="dorado">dorado</option><option value="plateado">plateado</option><option value="rojo">rojo</option><option value="marrón">marrón</option></select><button type="button" class="btn btn-ghost" style="margin-top:6px;width:100%" onclick="addColorTag()">+ Agregar tag</button><div id="admin-colortags-list" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"></div></div>
+        <div class="form-group"><label>Talle base</label><select id="admin-prod-size"><option>M - Estándar</option><option>L - Grande</option><option>S - Chico</option></select></div>
+      </div>
+      <div class="form-group"><label>Fotos (primera = principal)</label><div class="file-upload-box" onclick="document.getElementById('admin-file-input').click()">📁 Elegir fotos<input type="file" id="admin-file-input" accept="image/*" multiple style="display:none" onchange="handleFileUpload(this)"></div><div id="admin-gallery-preview"></div><div style="display:flex;gap:8px;margin-top:8px"><input id="admin-prod-url-fallback" placeholder="https://..." style="flex:1"><button type="button" class="btn btn-ghost" onclick="addUrlToGallery()">+ URL</button></div></div>
+      <button class="btn btn-primary" style="width:100%">💾 Guardar Producto</button><button type="button" class="btn btn-ghost" style="width:100%;margin-top:8px" onclick="resetProductForm()">Cancelar / Nuevo</button>
+    </form>
+    <div style="max-height:600px;overflow-y:auto"><table class="admin-table"><thead><tr><th>Img</th><th>Nombre</th><th>Cats / Tags</th><th>Precio</th><th>Acc</th></tr></thead><tbody id="admin-products-table"></tbody></table></div>
+  </div>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+
+<script>
+const STORAGE_KEY='mensh_vision_store_v2';
+const ADMIN_HASH_KEY='mensh_vision_admin_hash_v2';
+const ADMIN_SESSION_KEY='mensh_vision_admin_session_v2';
+const DEFAULT_HASH='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4' // SHA256 de 1234
+
+function escapeHTML(s){ if(s==null) return ''; return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"); }
+function showToast(m,t='info'){ const c=document.getElementById('toast-container'); const el=document.createElement('div'); el.className='toast'; el.textContent=m; if(t==='success') el.style.background='#0a7a42'; if(t==='error') el.style.background='#b71c1c'; if(t==='warning') el.style.background='#a67c00'; c.appendChild(el); setTimeout(()=>el.classList.add('show'),10); setTimeout(()=>{ el.classList.remove('show'); setTimeout(()=>el.remove(),300); },3000); }
+
+async function sha256(str){ const buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str)); return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join(''); }
+
+let storeData;
+try{ storeData=JSON.parse(localStorage.getItem(STORAGE_KEY)); if(!storeData) throw 0; }catch{ 
+  // intenta migrar v1
+  try{
+    const oldRaw=localStorage.getItem('MENSH VISION_store_data');
+    if(oldRaw){ const old=JSON.parse(oldRaw); storeData={ version:2, config:{ whatsappPhone:old.whatsappPhone||"5491112345678", mpAlias:old.mpAlias||"mensh.vision.mp", mpLink:old.mpLink||"", announcementBanner:old.announcementBanner||"Envíos gratis", showWelcomeVideo:old.showWelcomeVideo??true, welcomeVideo:old.welcomeVideo||"" }, categories:old.categories||{}, originalityGuide:old.originalityGuide||[], carouselSlides:old.carouselSlides||[], products:(old.products||[]).map(p=>({...p, colorTags:["negro"], gallery:p.gallery||[]})), faqs:[] }; 
+    } else { location.href='index.html'; }
+  }catch{ storeData=null; }
+}
+if(!storeData){ showToast("No hay datos v2, volviendo a tienda","error"); setTimeout(()=>location.href='index.html',1500); }
+
+async function verifyAdmin(){
+  const input=document.getElementById('admin-pass-input').value;
+  if(!input){ showToast("Ingresa contraseña","warning"); return; }
+  const hash=await sha256(input);
+  const savedHash=localStorage.getItem(ADMIN_HASH_KEY)||DEFAULT_HASH;
+  if(hash===savedHash){
+    sessionStorage.setItem(ADMIN_SESSION_KEY, Date.now().toString());
+    document.getElementById('login-overlay').style.display='none';
+    initAdmin();
+    showToast("Acceso concedido","success");
+  } else showToast("Clave incorrecta","error");
+}
+function logoutAdmin(){ sessionStorage.removeItem(ADMIN_SESSION_KEY); location.reload(); }
+function checkSession(){ const s=sessionStorage.getItem(ADMIN_SESSION_KEY); if(s){ document.getElementById('login-overlay').style.display='none'; initAdmin(); } }
+
+function initAdmin(){
+  document.getElementById('admin-store-phone').value=storeData.config.whatsappPhone||'';
+  document.getElementById('admin-store-mp-alias').value=storeData.config.mpAlias||'';
+  document.getElementById('admin-store-mp-link').value=storeData.config.mpLink||'';
+  document.getElementById('admin-store-banner').value=storeData.config.announcementBanner||'';
+  document.getElementById('admin-script-url').value=localStorage.getItem('mensh_vision_script_url')||"";
+  document.getElementById('admin-video-active-toggle').checked=!!storeData.config.showWelcomeVideo;
+  document.getElementById('admin-video-url-input').value=storeData.config.welcomeVideo||'';
+  previewVideo(storeData.config.welcomeVideo||'');
+  renderCategoryCheckboxes([]); renderSubcatManager(); renderGuideTable(); renderSlidesTable(); renderProductsTable();
+}
+
+function saveStoreData(){ 
+  try{
+    const str=JSON.stringify(storeData);
+    if(str.length>4500000){ showToast("⚠️ Muy pesado, usa URLs externas para imágenes","warning"); }
+    localStorage.setItem(STORAGE_KEY,str);
+  }catch(e){
+    if(e.name==='QuotaExceededError'){ showToast("❌ LocalStorage lleno. Borrá imágenes base64","error"); }
+  }
+}
+
+function compressImage(base64,maxWidth=800,quality=0.7){
+  return new Promise(res=>{
+    const img=new Image(); img.src=base64;
+    img.onload=()=>{
+      const canvas=document.createElement('canvas'); let w=img.width,h=img.height;
+      if(w>maxWidth){ h=Math.round((h*maxWidth)/w); w=maxWidth; }
+      canvas.width=w; canvas.height=h; const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0,w,h);
+      res(canvas.toDataURL('image/jpeg',quality));
+    };
+    img.onerror=()=>res(base64);
+  });
+}
+
+// SUBCATS
+function renderCategoryCheckboxes(selected=[]){
+  const c=document.getElementById('admin-prod-categories-checkboxes');
+  c.innerHTML=Object.keys(storeData.categories).map(cat=>{
+    const chk=selected.includes(cat)?'checked':'';
+    return `<label style="display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:700;cursor:pointer"><input type="checkbox" class="admin-prod-cat-checkbox" value="${escapeHTML(cat)}" ${chk} style="width:16px;height:16px;accent-color:#000"> ${escapeHTML(cat)}</label>`;
+  }).join('');
+}
+function renderSubcatManager(){
+  const main=document.getElementById('admin-subcat-main-select').value;
+  const cont=document.getElementById('admin-subcats-list');
+  if(!storeData.categories[main]) storeData.categories[main]=[];
+  const subs=storeData.categories[main];
+  if(!subs.length){ cont.innerHTML=`<div style="font-size:.8rem;color:#888">Sin subcategorías en ${escapeHTML(main)}</div>`; return; }
+  cont.innerHTML=subs.map((s,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#fff;border:1px solid #e2e8f0;border-radius:6px;margin-bottom:6px;font-weight:700;font-size:.85rem"><span>${escapeHTML(s)}</span><button class="btn-delete-sm" onclick="deleteSub('${escapeHTML(main)}',${i})">Eliminar</button></div>`).join('');
+}
+function addSubcategory(){
+  const main=document.getElementById('admin-subcat-main-select').value;
+  const input=document.getElementById('admin-new-subcat-input');
+  const name=input.value.trim(); if(!name){ showToast("Ingresa nombre","warning"); return; }
+  if(!storeData.categories[main]) storeData.categories[main]=[];
+  if(storeData.categories[main].includes(name)){ showToast("Ya existe","warning"); return; }
+  storeData.categories[main].push(name); saveStoreData(); input.value=''; renderSubcatManager(); renderCategoryCheckboxes([]); showToast("Subcategoría agregada","success");
+}
+function deleteSub(main,i){ if(confirm("Eliminar subcategoría?")){ storeData.categories[main].splice(i,1); saveStoreData(); renderSubcatManager(); showToast("Eliminada","warning"); } }
+
+// GUIDE
+function handleGuideUpload(input){
+  const file=input.files[0]; if(!file) return;
+  const reader=new FileReader(); reader.onload=async e=>{ const comp=await compressImage(e.target.result); document.getElementById('admin-guide-img').value=comp; const p=document.getElementById('admin-guide-img-preview'); p.src=comp; p.style.display='block'; }; reader.readAsDataURL(file);
+}
+function renderGuideTable(){
+  const t=document.getElementById('admin-guide-table'), c=document.getElementById('admin-guide-count');
+  c.innerText=(storeData.originalityGuide||[]).length;
+  t.innerHTML=(storeData.originalityGuide||[]).map((it,i)=>`<tr><td><img src="${escapeHTML(it.img)}" style="width:60px;height:40px;object-fit:cover;border-radius:4px"></td><td><b>${escapeHTML(it.title)}</b></td><td><button class="btn-edit-sm" onclick="editGuide(${i})">Editar</button><button class="btn-delete-sm" onclick="deleteGuide(${i})">Eliminar</button></td></tr>`).join('');
+}
+function editGuide(i){ const it=storeData.originalityGuide[i]; document.getElementById('admin-guide-index').value=i; document.getElementById('admin-guide-title').value=it.title; document.getElementById('admin-guide-text').value=it.text; document.getElementById('admin-guide-img').value=it.img; const p=document.getElementById('admin-guide-img-preview'); p.src=it.img; p.style.display='block'; }
+function saveGuide(e){ e.preventDefault(); const idx=parseInt(document.getElementById('admin-guide-index').value); const title=document.getElementById('admin-guide-title').value.trim(), text=document.getElementById('admin-guide-text').value.trim(); let img=document.getElementById('admin-guide-img').value||document.getElementById('admin-guide-url-fallback').value.trim()||`https://placehold.co/500x300?text=${encodeURIComponent(title)}`; const obj={title,text,img}; if(!storeData.originalityGuide) storeData.originalityGuide=[]; if(idx>=0) storeData.originalityGuide[idx]=obj; else storeData.originalityGuide.push(obj); saveStoreData(); renderGuideTable(); resetGuideForm(); showToast("Guía guardada","success"); }
+function deleteGuide(i){ if(confirm("Eliminar paso?")){ storeData.originalityGuide.splice(i,1); saveStoreData(); renderGuideTable(); showToast("Eliminado","warning"); } }
+function resetGuideForm(){ document.getElementById('admin-guide-form').reset(); document.getElementById('admin-guide-index').value=-1; document.getElementById('admin-guide-img-preview').style.display='none'; document.getElementById('admin-guide-img').value=''; }
+
+// SLIDES
+function handleSlideUpload(input){ const file=input.files[0]; if(!file) return; const r=new FileReader(); r.onload=async e=>{ const comp=await compressImage(e.target.result,1200,0.75); document.getElementById('admin-slide-img').value=comp; const p=document.getElementById('admin-slide-img-preview'); p.src=comp; p.style.display='block'; }; r.readAsDataURL(file); }
+function renderSlidesTable(){ const t=document.getElementById('admin-slides-table'); document.getElementById('admin-slides-count').innerText=storeData.carouselSlides.length; t.innerHTML=storeData.carouselSlides.map((s,i)=>`<tr><td><img src="${escapeHTML(s.image)}" style="width:70px;height:40px;object-fit:cover;border-radius:4px"></td><td><b>${escapeHTML(s.title)}</b><br><span style="font-size:.7rem;color:#666">${escapeHTML(s.filterCat)}</span></td><td><button class="btn-edit-sm" onclick="editSlide(${i})">Editar</button><button class="btn-delete-sm" onclick="deleteSlide(${i})">Eliminar</button></td></tr>`).join(''); }
+function editSlide(i){ const s=storeData.carouselSlides[i]; document.getElementById('admin-slide-index').value=i; document.getElementById('admin-slide-title').value=s.title; document.getElementById('admin-slide-subtitle').value=s.subtitle; document.getElementById('admin-slide-btntext').value=s.buttonText; document.getElementById('admin-slide-cat').value=s.filterCat; document.getElementById('admin-slide-img').value=s.image; const p=document.getElementById('admin-slide-img-preview'); p.src=s.image; p.style.display='block'; }
+function saveSlide(e){ e.preventDefault(); const idx=parseInt(document.getElementById('admin-slide-index').value); const title=document.getElementById('admin-slide-title').value, subtitle=document.getElementById('admin-slide-subtitle').value, buttonText=document.getElementById('admin-slide-btntext').value, filterCat=document.getElementById('admin-slide-cat').value; let image=document.getElementById('admin-slide-img').value||document.getElementById('admin-slide-url-fallback').value||`https://placehold.co/1200x400?text=${encodeURIComponent(title)}`; const obj={title,subtitle,image,buttonText,filterCat}; if(idx>=0) storeData.carouselSlides[idx]=obj; else storeData.carouselSlides.push(obj); saveStoreData(); renderSlidesTable(); resetSlideForm(); showToast("Banner guardado","success"); }
+function deleteSlide(i){ if(confirm("Eliminar banner?")){ storeData.carouselSlides.splice(i,1); saveStoreData(); renderSlidesTable(); showToast("Banner eliminado","warning"); } }
+function resetSlideForm(){ document.getElementById('admin-slide-form').reset(); document.getElementById('admin-slide-index').value=-1; document.getElementById('admin-slide-img-preview').style.display='none'; document.getElementById('admin-slide-img').value=''; }
+
+// VIDEO
+function handleVideoUpload(input){
+  const file=input.files[0]; if(!file) return;
+  if(file.size>20*1024*1024){ showToast("Video muy pesado, usa URL","warning"); return; }
+  const reader=new FileReader(); reader.onload=e=>{ document.getElementById('admin-video-url-input').value=e.target.result; previewVideo(e.target.result); }; reader.readAsDataURL(file);
+}
+function previewVideo(url){ const el=document.getElementById('admin-video-preview'); if(!el) return; el.src=url; el.muted=true; if(url) el.play().catch(()=>{}); }
+function saveVideoSettings(){ storeData.config.showWelcomeVideo=document.getElementById('admin-video-active-toggle').checked; storeData.config.welcomeVideo=document.getElementById('admin-video-url-input').value.trim(); saveStoreData(); showToast("Video guardado","success"); }
+
+// PRODUCTS
+let tempGallery=[], tempColorTags=[];
+function handleFileUpload(input){
+  const files=Array.from(input.files); if(!files.length) return;
+  let loaded=0; files.forEach(file=>{
+    const reader=new FileReader(); reader.onload=async e=>{ const comp=await compressImage(e.target.result); tempGallery.push(comp); loaded++; if(loaded===files.length) renderGalleryPreview(); }; reader.readAsDataURL(file);
+  }); input.value='';
+}
+function addUrlToGallery(){ const inp=document.getElementById('admin-prod-url-fallback'); const url=inp.value.trim(); if(url){ tempGallery.push(url); inp.value=''; renderGalleryPreview(); } }
+function removeGalleryImage(i){ tempGallery.splice(i,1); renderGalleryPreview(); }
+function renderGalleryPreview(){
+  const c=document.getElementById('admin-gallery-preview');
+  c.innerHTML=tempGallery.map((u,i)=>`<div style="position:relative;width:75px;height:60px;border:1px solid #ccc;border-radius:6px;background:#f0f0f0;padding:2px"><img src="${escapeHTML(u)}" style="width:100%;height:100%;object-fit:contain;border-radius:4px"><button type="button" onclick="removeGalleryImage(${i})" style="position:absolute;top:-6px;right:-6px;background:#d32f2f;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:10px;cursor:pointer">✕</button>${i===0?'<span style="position:absolute;bottom:2px;left:2px;right:2px;background:rgba(0,0,0,.75);color:#fff;font-size:8px;text-align:center;font-weight:bold">Principal</span>':''}</div>`).join('');
+}
+function addColorTag(){ const sel=document.getElementById('admin-prod-colortag'); const val=sel.value; if(!tempColorTags.includes(val)){ tempColorTags.push(val); renderColorTags(); } }
+function removeColorTag(i){ tempColorTags.splice(i,1); renderColorTags(); }
+function renderColorTags(){ document.getElementById('admin-colortags-list').innerHTML=tempColorTags.map((t,i)=>`<span style="background:#111;color:#fff;padding:4px 10px;border-radius:20px;font-size:.72rem;font-weight:700;display:flex;align-items:center;gap:6px">${escapeHTML(t)} <button onclick="removeColorTag(${i})" style="background:none;border:none;color:#fff;cursor:pointer">✕</button></span>`).join(''); }
+
+function renderProductsTable(){
+  const t=document.getElementById('admin-products-table'); document.getElementById('admin-prod-count').innerText=storeData.products.length;
+  t.innerHTML=storeData.products.map(p=>`<tr><td><img src="${escapeHTML(p.img)}" style="width:40px;height:30px;object-fit:contain;background:#f0f0f0"></td><td><b>${escapeHTML(p.name)}</b></td><td>${escapeHTML((p.categories||[]).join(', '))}<br><span style="font-size:.7rem;color:#d32f2f;font-weight:800">${escapeHTML((p.colorTags||[]).join(', '))}</span></td><td>$${p.price.toLocaleString('es-AR')}</td><td><button class="btn-edit-sm" onclick="editProduct(${p.id})">Editar</button><button class="btn-delete-sm" onclick="deleteProduct(${p.id})">Eliminar</button></td></tr>`).join('');
+}
+function editProduct(id){
+  const p=storeData.products.find(x=>x.id===id); if(!p) return;
+  document.getElementById('admin-prod-id').value=p.id;
+  document.getElementById('admin-prod-name').value=p.name;
+  renderCategoryCheckboxes(p.categories||[]);
+  document.getElementById('admin-prod-price').value=p.price;
+  document.getElementById('admin-prod-badge').value=p.badge||'Ninguno';
+  document.getElementById('admin-prod-size').value=p.size||'M - Estándar';
+  tempColorTags=p.colorTags||[]; renderColorTags();
+  tempGallery=[]; if(p.img) tempGallery.push(p.img); if(p.gallery?.length){ p.gallery.forEach(g=>{ if(g && !tempGallery.includes(g)) tempGallery.push(g); }); }
+  renderGalleryPreview();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function resetProductForm(){ document.getElementById('admin-product-form').reset(); document.getElementById('admin-prod-id').value=''; tempGallery=[]; tempColorTags=[]; renderCategoryCheckboxes([]); renderGalleryPreview(); renderColorTags(); }
+function saveProduct(e){
+  e.preventDefault();
+  const existingId=document.getElementById('admin-prod-id').value;
+  const name=document.getElementById('admin-prod-name').value;
+  const price=parseFloat(document.getElementById('admin-prod-price').value);
+  const badge=document.getElementById('admin-prod-badge').value;
+  const size=document.getElementById('admin-prod-size').value;
+  const checked=Array.from(document.querySelectorAll('.admin-prod-cat-checkbox:checked')).map(cb=>cb.value);
+  let cats=checked.length?checked:["Clásicos"];
+  let mainImg=tempGallery.length?tempGallery[0]:`https://placehold.co/600x400?text=${encodeURIComponent(name)}`;
+  const colorTags=tempColorTags.length?tempColorTags:["negro"];
+  if(existingId){
+    const idx=storeData.products.findIndex(p=>p.id==existingId);
+    if(idx>-1){ storeData.products[idx]={ id:parseInt(existingId), name, categories:cats, price, badge, img:mainImg, gallery:[...tempGallery], colorTags, size }; showToast("Producto actualizado","success"); }
+  } else {
+    storeData.products.unshift({ id:Date.now(), name, categories:cats, price, badge, img:mainImg, gallery:[...tempGallery], colorTags, size });
+    showToast("Producto agregado","success");
+  }
+  saveStoreData(); renderProductsTable(); resetProductForm();
+}
+function deleteProduct(id){ if(confirm("¿Eliminar este modelo?")){ storeData.products=storeData.products.filter(p=>p.id!==id); saveStoreData(); renderProductsTable(); showToast("Eliminado","warning"); } }
+
+async function saveGlobalSettings(){
+  storeData.config.whatsappPhone=document.getElementById('admin-store-phone').value;
+  storeData.config.mpAlias=document.getElementById('admin-store-mp-alias').value;
+  storeData.config.mpLink=document.getElementById('admin-store-mp-link').value;
+  storeData.config.announcementBanner=document.getElementById('admin-store-banner').value;
+  const scriptUrl=document.getElementById('admin-script-url').value.trim();
+  if(scriptUrl) localStorage.setItem('mensh_vision_script_url',scriptUrl);
+  const newPass=document.getElementById('admin-store-newpass').value;
+  if(newPass){
+    const hash=await sha256(newPass);
+    localStorage.setItem(ADMIN_HASH_KEY,hash);
+    document.getElementById('admin-store-newpass').value='';
+    showToast("Contraseña cambiada (hasheada)","success");
+  }
+  saveStoreData(); showToast("Ajustes guardados","success");
+}
+
+function exportCleanHTML(){
+  // genera un index.html limpio inyectando storeData en la plantilla
+  fetch('index.html').then(r=>r.text()).then(html=>{
+    // reemplaza DEFAULT_DATA con storeData actual
+    const clean = html.replace(/const DEFAULT_DATA = \{[\s\S]*?^\};/m, `const DEFAULT_DATA = ${JSON.stringify(storeData,null,2)};`);
+    // segunda pasada por si falla regex, reemplazo simple
+    const finalHtml = clean.includes('DEFAULT_DATA = {') ? clean : html.replace(/const DEFAULT_DATA = \{[\s\S]*?\,\n  faqs:/, `const DEFAULT_DATA = ${JSON.stringify(storeData,null,2).slice(0,-1)},`);
+    // como fallback, inyecta storeData en localStorage script: crea blob con storeData en DEFAULT_DATA
+    let out = html;
+    const start = out.indexOf('const DEFAULT_DATA = {');
+    if(start>-1){
+      // busca cierre balanceado para reemplazar correctamente
+      let depth=0, end=-1, braceStart=out.indexOf('{',start);
+      for(let i=braceStart;i<out.length;i++){
+        if(out[i]=='{') depth++; else if(out[i]=='}'){ depth--; if(depth==0){ end=i+1; break; } }
+      }
+      if(end>-1){
+        out = out.slice(0,braceStart) + JSON.stringify(storeData,null,2) + out.slice(end);
+      }
+    }
+    const blob=new Blob([out],{type:'text/html'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='index.html'; a.click();
+    showToast("Descargando index.html limpio","success");
+  }).catch(()=>{
+    // fallback: usa storeData del propio admin.html inyectado en index del v1
+    const blob=new Blob([`<script>localStorage.setItem('${STORAGE_KEY}', '${JSON.stringify(storeData).replace(/'/g,"\\'")}'); location.href='index.html'</script>`],{type:'text/html'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='migrate.html'; a.click();
+  });
+}
+
+checkSession();
+document.getElementById('admin-pass-input').addEventListener('keydown',e=>{ if(e.key==='Enter') verifyAdmin(); });
+</script>
+</body>
+</html>

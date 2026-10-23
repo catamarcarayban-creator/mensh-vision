@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MENSH VISION - Tienda Oficial de anteojos y gafas de sol con protección UV400, cristales polarizados y Colección Exclusiva Scuderia FERRARI.">
+  <title>MENSH VISION | Tienda Oficial & Scuderia FERRARI Edition</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MENSH VISION | Tienda Oficial de Lentes & Scuderia FERRARI">
+  <meta property="og:description" content="Protección UV400, cristales polarizados, edición Scuderia FERRARI y envíos a todo el país.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:url" content="https://menshvision.com">
+  <link rel="canonical" href="https://menshvision.com/">
+  <script type="application/ld+json" id="schema-store"></script>
+
+<style>
+:root{
+  --bg-primary:#f8f9fa; --bg-card:#f0f0f0; --text-main:#0d0d0f; --text-muted:#62656e;
+  --accent-red:#d32f2f; --accent-hover:#b71c1c; --border-color:#d1d5db;
+  --radius-sm:8px; --radius-md:14px; --radius-lg:20px;
+  --shadow-subtle:0 4px 20px rgba(0,0,0,.04); --shadow-hover:0 12px 32px rgba(0,0,0,.08);
+  --font-heading:'Outfit',sans-serif; --font-body:'Plus Jakarta Sans',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:var(--font-body)}
+body{background-color:var(--bg-primary);color:var(--text-main);-webkit-font-smoothing:antialiased}
+.skip-link{position:absolute;top:-40px;left:0;background:#000;color:#fff;padding:10px 20px;z-index:5000;transition:top .2s;text-decoration:none;font-weight:700;border-radius:0 0 8px 0}
+.skip-link:focus{top:0}
+:focus-visible{outline:2px solid var(--accent-red);outline-offset:3px}
+.top-bar{background-color:#0b0c0e;color:#f3f4f6;font-size:.75rem;text-align:center;padding:10px 20px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;display:flex;justify-content:center;gap:28px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.08)}
+.top-bar span{display:inline-flex;align-items:center;gap:8px;opacity:.9}
+header{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border-color);padding:16px 3%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;box-shadow:var(--shadow-subtle)}
+.brand-logo{font-family:var(--font-heading);font-size:2.1rem;font-weight:900;letter-spacing:-1px;color:#000;text-decoration:none;cursor:pointer;user-select:none;text-transform:uppercase}
+.brand-logo span{color:var(--accent-red);font-size:2.4rem;line-height:0;vertical-align:middle}
+.nav-actions{display:flex;align-items:center;gap:14px}
+.btn-icon{background:#fff;border:1px solid var(--border-color);font-size:.82rem;font-weight:700;cursor:pointer;position:relative;padding:10px 18px;border-radius:40px;transition:all .25s ease;display:flex;align-items:center;gap:8px;color:var(--text-main);box-shadow:0 2px 6px rgba(0,0,0,.02)}
+.btn-icon:hover{background:#000;color:#fff;border-color:#000;transform:translateY(-1px)}
+.cart-badge{background:var(--accent-red);color:#fff;font-size:.7rem;font-weight:800;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.search-box-header{flex:1;max-width:440px;margin:0 28px;position:relative}
+.search-box-header input{width:100%;padding:11px 18px 11px 42px;border:1px solid var(--border-color);border-radius:40px;font-size:.85rem;outline:none;transition:all .25s ease;background:#f2f3f5;color:var(--text-main);font-weight:500}
+.search-box-header input:focus{border-color:#000;background:#fff;box-shadow:0 0 0 4px rgba(0,0,0,.06)}
+.search-box-header .search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#888;font-size:.9rem;pointer-events:none}
+.sub-nav-bar{background:#fff;border-bottom:1px solid var(--border-color);padding:13px 3%;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;font-size:.75rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase}
+.sub-nav-bar button{background:none;border:none;color:#111;font-weight:800;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;font-size:.75rem;transition:all .2s ease;padding:2px 0}
+.sub-nav-bar button:hover{color:var(--accent-red);transform:translateY(-1px)}
+.carousel-container{position:relative;max-width:100%;margin:0 auto;overflow:hidden;background:#0a0a0c;color:#fff;height:440px}
+.carousel-slide{display:none;width:100%;height:100%;position:relative;background-size:cover;background-position:center}
+.carousel-slide.active{display:flex;align-items:center;justify-content:flex-start;padding:0 6%}
+.carousel-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,rgba(10,10,12,.92) 0%,rgba(10,10,12,.55) 55%,rgba(10,10,12,.1) 100%)}
+.carousel-content{position:relative;z-index:2;max-width:620px}
+.carousel-content h2{font-family:var(--font-heading);font-size:2.8rem;text-transform:uppercase;font-weight:900;letter-spacing:-.5px;margin-bottom:14px;color:#fff;line-height:1.08}
+.carousel-content p{font-size:1.05rem;color:#e2e8f0;margin-bottom:26px;line-height:1.5}
+.carousel-btn{display:inline-block;background:#fff;color:#0a0a0c;padding:14px 32px;text-decoration:none;font-weight:800;text-transform:uppercase;font-size:.82rem;border-radius:40px;letter-spacing:1px;transition:all .25s ease}
+.carousel-btn:hover{background:var(--accent-red);color:#fff;transform:translateY(-2px)}
+.carousel-nav{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10}
+.dot{width:10px;height:10px;background:rgba(255,255,255,.35);border-radius:50%;border:none;cursor:pointer;transition:all .3s ease}
+.dot.active{background:#fff;width:32px;border-radius:10px}
+.trust-badges-bar{background:#fff;border-bottom:1px solid var(--border-color);padding:26px 3%;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.trust-badge-item{display:flex;align-items:center;gap:16px}
+.trust-icon{font-size:1.6rem;background:#f2f3f7;padding:12px;border-radius:50%;display:flex;align-items:center;justify-content:center;width:48px;height:48px;flex-shrink:0}
+.trust-badge-item h3{font-family:var(--font-heading);font-size:.88rem;font-weight:800;text-transform:uppercase;margin-bottom:3px;letter-spacing:.5px}
+.trust-badge-item p{font-size:.78rem;color:var(--text-muted);line-height:1.4}
+.btn-menu-toggle{background:transparent;border:none;font-size:1.5rem;cursor:pointer;padding:6px 12px;display:flex;align-items:center;justify-content:center;border-radius:8px}
+.btn-menu-toggle:hover{background:#f0f1f4}
+.cat-drawer-overlay,.cart-drawer-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(10,10,12,.6);display:none;backdrop-filter:blur(4px)}
+.cat-drawer-overlay{z-index:2150}.cart-drawer-overlay{z-index:2050}
+.cat-drawer{position:fixed;top:0;left:-340px;width:320px;max-width:85%;height:100%;background:#fff;box-shadow:10px 0 35px rgba(0,0,0,.18);z-index:2200;transition:left .35s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}
+.cat-drawer.open{left:0}
+.cat-drawer-header{padding:24px;background:#0b0c0e;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.cat-drawer-header h3{font-family:var(--font-heading);font-size:1.05rem;text-transform:uppercase;letter-spacing:1.2px;font-weight:800;display:flex;align-items:center;gap:10px}
+.cat-drawer-close{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;opacity:.8}
+.cat-drawer-list{flex:1;overflow-y:auto;padding:18px 14px}
+.cat-drawer-item{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-radius:var(--radius-sm);color:#222;font-weight:700;font-size:.88rem;cursor:pointer;transition:.2s;text-decoration:none;margin-bottom:2px}
+.cat-drawer-item:hover,.cat-drawer-item.active{background:#0b0c0e;color:#fff}
+.cat-drawer-item .cat-count{font-size:.72rem;background:#eef0f4;color:#555;padding:3px 10px;border-radius:12px;font-weight:800}
+.main-container{max-width:96%;margin:30px auto;padding:0 10px}
+.catalog-controls{background:#fff;border:1px solid var(--border-color);border-radius:var(--radius-md);padding:18px 20px;margin-bottom:26px;display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow-subtle)}
+.controls-top-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.results-count{font-weight:800;font-size:.85rem;letter-spacing:.5px;text-transform:uppercase;color:#111}
+.controls-group{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.filter-pill-btn{background:#f2f3f5;border:1px solid var(--border-color);padding:8px 16px;border-radius:30px;font-size:.78rem;font-weight:800;cursor:pointer;transition:.2s}
+.filter-pill-btn.active,.filter-pill-btn:hover{background:#000;color:#fff;border-color:#000}
+.filter-item-box{display:flex;align-items:center;gap:8px;font-size:.8rem;font-weight:700}
+.filter-item-box select,.filter-item-box input[type=range]{padding:7px 12px;border:1px solid var(--border-color);border-radius:30px;background:#fff;font-size:.8rem;font-weight:700}
+.controls-filters-row{display:flex;gap:20px;flex-wrap:wrap}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.product-card{background:#f5f5f7;border:1px solid #e5e7eb;border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:all .28s ease;position:relative;display:flex;flex-direction:column;box-shadow:var(--shadow-subtle)}
+.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:#d1d5db}
+.card-top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 14px}
+.badge-text-dark{background:#111;color:#fff;font-size:.68rem;font-weight:900;padding:4px 10px;border-radius:4px;letter-spacing:.8px;text-transform:uppercase}
+.badge-text-red{background:var(--accent-red);color:#fff;font-size:.68rem;font-weight:900;padding:4px 10px;border-radius:4px;letter-spacing:.8px;text-transform:uppercase}
+.btn-wishlist{background:#fff;border:1px solid var(--border-color);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:.2s}
+.btn-wishlist:hover{background:#000;color:#fff}
+.product-img-container{width:100%;height:180px;background:#efeff2;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.product-img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transition:transform .4s ease}
+.product-card:hover .product-img{transform:scale(1.05)}
+.product-card-bottom{padding:14px 16px 16px;background:#fff;flex:1;display:flex;flex-direction:column;gap:6px}
+.product-title-clean{font-family:var(--font-heading);font-size:.98rem;font-weight:800;line-height:1.25;color:#111;letter-spacing:-.2px;text-transform:uppercase;min-height:38px}
+.product-colors-info{font-size:.72rem;font-weight:700;color:#888;letter-spacing:.5px;text-transform:uppercase}
+.swatch-bar-wrapper{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.swatch-item{width:26px;height:26px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #d1d5db;overflow:hidden;cursor:pointer;transition:.2s}
+.swatch-item.active{box-shadow:0 0 0 2px #000}
+.swatch-item img{width:100%;height:100%;object-fit:cover}
+.modal-dialog{border:none;border-radius:var(--radius-lg);max-width:960px;width:92%;margin:auto;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.25);position:relative}
+.modal-dialog::backdrop{background:rgba(10,10,12,.65);backdrop-filter:blur(6px)}
+.modal-close{position:absolute;top:16px;right:16px;border:none;background:#f0f1f4;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#555;transition:.25s;line-height:0;padding:0;padding-bottom:2px}
+.modal-close:hover{color:#000;background:#e2e8f0;transform:rotate(90deg)}
+.cart-drawer{position:fixed;top:0;right:-420px;width:400px;max-width:92%;height:100%;background:#fff;z-index:2100;transition:right .35s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;box-shadow:-10px 0 35px rgba(0,0,0,.18)}
+.cart-drawer.open{right:0}
+.cart-header{padding:22px 20px;background:#0b0c0e;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.cart-items{flex:1;overflow-y:auto;padding:16px}
+.cart-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f4}
+.cart-item img{width:64px;height:48px;object-fit:contain;background:#f5f5f7;border-radius:6px}
+.cart-footer{padding:18px;border-top:1px solid var(--border-color);background:#fafafa}
+.btn-add{width:100%;background:#000;color:#fff;border:none;padding:14px;border-radius:40px;font-weight:900;letter-spacing:1px;text-transform:uppercase;font-size:.82rem;cursor:pointer;transition:.25s}
+.btn-add:hover{background:var(--accent-red);transform:translateY(-1px)}
+.toast-container{position:fixed;bottom:24px;right:24px;z-index:5000;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.toast{background:#111;color:#fff;padding:12px 18px;border-radius:30px;font-size:.82rem;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:translateY(20px);opacity:0;transition:all .3s ease;pointer-events:auto}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-success{background:#0a7a42}.toast-error{background:#b71c1c}.toast-warning{background:#a67c00}
+.ferrari-showcase-box{display:none;background:linear-gradient(135deg,#111115 0%,#200404 50%,#0a0a0c 100%);border:2px solid #e10600;border-radius:var(--radius-lg);padding:40px 36px;margin-bottom:35px;position:relative;overflow:hidden;box-shadow:0 12px 35px rgba(225,6,0,.25)}
+.ferrari-badge-flag{display:inline-flex;align-items:center;gap:8px;background:#e10600;color:#fff;font-size:.75rem;font-weight:900;padding:5px 14px;border-radius:4px;letter-spacing:1.2px;border-left:4px solid #ffd700;text-transform:uppercase;margin-bottom:14px}
+.ferrari-title{font-family:var(--font-heading);font-size:2.4rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.ferrari-subtitle{font-size:.98rem;color:#ccc;max-width:720px;line-height:1.6}
+body.ferrari-mode{background:#0e0e10;color:#fff}
+body.ferrari-mode .ferrari-showcase-box{display:block}
+body.ferrari-mode header{background:rgba(18,18,22,.92);border-bottom:1px solid #22222a}
+body.ferrari-mode .brand-logo{color:#fff}
+body.ferrari-mode .sub-nav-bar{background:#121216;border-bottom:1px solid #22222a}
+body.ferrari-mode .sub-nav-bar button{color:#ffd700 !important}
+body.ferrari-mode .product-card{background:linear-gradient(180deg,#1a1a20 0%,#14141a 100%);border:1px solid #22222a}
+body.ferrari-mode .product-card:hover{border-color:#e10600;box-shadow:0 10px 30px rgba(225,6,0,.25)}
+body.ferrari-mode .product-title-clean{color:#fff}
+body.ferrari-mode .product-card-bottom{background:#121216}
+body.ferrari-mode .product-card-bottom div[style*="color:#111"]{color:#fff !important}
+body.ferrari-mode .catalog-controls{background:#121216;border:1px solid #252530}
+body.ferrari-mode .results-count{color:#ffd700}
+.reviews-section{padding:50px 3%;background:#fff;border-top:1px solid var(--border-color);margin-top:30px}
+.section-title-center{text-align:center;font-family:var(--font-heading);font-weight:900;font-size:1.6rem;letter-spacing:-.5px;text-transform:uppercase;margin-bottom:8px}
+.section-subtitle-center{text-align:center;color:var(--text-muted);font-size:.88rem;margin-bottom:28px}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;max-width:1200px;margin:0 auto}
+.review-card{background:#f8f9fb;border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px}
+.review-stars{font-size:.9rem;margin-bottom:8px}
+.review-text{font-size:.88rem;color:#333;line-height:1.5;margin-bottom:10px}
+.review-author{font-weight:800;font-size:.82rem}
+.faq-section{padding:40px 3%;max-width:900px;margin:0 auto}
+.faq-item{background:#fff;border:1px solid var(--border-color);border-radius:var(--radius-md);margin-bottom:10px;overflow:hidden}
+.faq-question{width:100%;text-align:left;background:none;border:none;padding:16px 18px;font-weight:800;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-answer{display:none;padding:0 18px 16px;color:#555;font-size:.88rem;line-height:1.6}
+.faq-item.open .faq-answer{display:block}
+footer{background:#0b0c0e;color:#e5e7eb;padding:40px 3% 20px;border-top:4px solid var(--accent-red);margin-top:40px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;max-width:1200px;margin:0 auto 30px}
+.footer-col h4{font-family:var(--font-heading);font-size:.9rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;color:#fff}
+.footer-col a,.footer-col p{color:#9ca3af;font-size:.84rem;text-decoration:none;line-height:1.7;display:block}
+.footer-col a:hover{color:#fff}
+.floating-wa{position:fixed;bottom:24px;left:24px;z-index:2000;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 8px 24px rgba(37,211,102,.4);cursor:pointer;transition:.25s;border:none}
+.floating-wa:hover{transform:scale(1.08)}
+@media(max-width:768px){
+  header{flex-wrap:wrap;gap:12px;padding:14px 4%}
+  .search-box-header{order:3;margin:6px 0 0 0;max-width:100%;flex-basis:100%}
+  .sub-nav-bar{gap:12px;padding:12px;font-size:.68rem}
+  .carousel-container{height:360px}
+  .carousel-content h2{font-size:1.9rem}
+  .main-container{max-width:100%;padding:0 12px}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+<div class="top-bar" id="announcement-text" role="region" aria-label="Anuncio">
+  <span>🚚 Envíos gratis a todo el país</span>
+  <span>💳 3 y 6 Cuotas Sin Interés</span>
+  <span>📲 Asesoramiento por WhatsApp</span>
+</div>
+
+<header role="banner">
+  <div style="display:flex;align-items:center;gap:14px">
+    <button class="btn-menu-toggle" onclick="toggleCategoryMenu()" aria-label="Abrir categorías">☰</button>
+    <a class="brand-logo" href="/" onclick="filterReset();return false">MENSH VISION<span>.</span></a>
+  </div>
+  <div class="search-box-header" role="search">
+    <span class="search-icon" aria-hidden="true">🔍</span>
+    <input type="search" id="search-input" placeholder="Buscar modelo o estilo..." oninput="onSearchInput()" aria-label="Buscar productos">
+  </div>
+  <div class="nav-actions">
+    <button class="btn-icon" onclick="openUserModal()" aria-label="Cuenta">👤 <span id="nav-user-name">Mi Cuenta</span></button>
+    <button class="btn-icon" onclick="toggleCart()" aria-label="Abrir carrito">🛒 <span class="cart-badge" id="cart-count">0</span></button>
+  </div>
+</header>
+
+<nav class="sub-nav-bar" aria-label="Secundaria">
+  <button onclick="openOriginalityModal()">GUÍA DE ORIGINALIDAD</button>
+  <button onclick="selectCategory('Clásicos')">CLÁSICOS</button>
+  <button onclick="selectCategory('Modernos')">MODERNOS</button>
+  <button onclick="selectCategory('Mujer')">MUJER</button>
+  <button onclick="selectCategory('Hombre')">HOMBRE</button>
+  <button style="font-weight:900" onclick="selectCategory('Scuderia FERRARI')">🏎️ FERRARI</button>
+  <button onclick="selectCategory('Últimos lanzamientos')">LANZAMIENTOS</button>
+  <button onclick="selectCategory('Edición Limitada')">ED. LIMITADA</button>
+</nav>
+
+<dialog class="modal-dialog" id="originality-modal" style="max-width:800px">
+  <button class="modal-close" onclick="closeModal('originality-modal')" aria-label="Cerrar">✕</button>
+  <header style="text-align:center;border-bottom:2px solid #f0f0f4;padding-bottom:18px;margin-bottom:28px">
+    <h2 style="font-family:var(--font-heading);font-size:1.8rem;font-weight:900;color:var(--accent-red);text-transform:uppercase">Guía de Originalidad</h2>
+    <p style="font-size:.88rem;color:#666;font-weight:600;margin-top:6px">Identifica la autenticidad de tus gafas oficiales MENSH VISION</p>
+  </header>
+  <section id="orig-guide-list-container" style="display:flex;flex-direction:column;gap:32px"></section>
+  <button onclick="closeModal('originality-modal')" class="btn-add" style="margin-top:30px;background:#000">ENTENDIDO</button>
+</dialog>
+
+<main id="main-content">
+  <section class="carousel-container" id="carousel-wrapper" aria-label="Banners"><div class="carousel-nav" id="carousel-dots"></div></section>
+  <section class="trust-badges-bar" aria-label="Garantías">
+    <article class="trust-badge-item"><span class="trust-icon">🛡️</span><div><h3>Protección UV400</h3><p>100% UVA y UVB en todos los cristales</p></div></article>
+    <article class="trust-badge-item"><span class="trust-icon">🔄</span><div><h3>15 Días de Cambio</h3><p>Cambios sin costo</p></div></article>
+    <article class="trust-badge-item"><span class="trust-icon">🚚</span><div><h3>Envío Gratis Nacional</h3><p>Despacho con seguimiento</p></div></article>
+  </section>
+  <div class="main-container">
+    <section class="ferrari-showcase-box" id="ferrari-showcase">
+      <div class="ferrari-badge-flag">🏁 Ray-Ban x Scuderia FERRARI</div>
+      <h1 class="ferrari-title">INGENIERÍA Y PASIÓN MOTORSPORT</h1>
+      <p class="ferrari-subtitle">Fibra de carbono, detalles Rosso Corsa y cristales Chromance con grabado oficial del Cavallino Rampante.</p>
+    </section>
+    <section class="catalog-controls" aria-label="Filtros">
+      <div class="controls-top-row">
+        <div class="results-count" id="results-count">Mostrando catálogo completo</div>
+        <div class="controls-group">
+          <button class="filter-pill-btn" id="filter-polarized-btn" onclick="togglePolarizedFilter()">🕶️ Solo Polarizados</button>
+          <div class="filter-item-box"><label for="sort-select">Ordenar:</label><select id="sort-select" onchange="filterProducts()"><option value="default">Recomendados</option><option value="price-asc">Precio: Menor a Mayor</option><option value="price-desc">Precio: Mayor a Menor</option><option value="name-asc">Nombre: A - Z</option></select></div>
+          <button class="filter-pill-btn" onclick="filterReset()">↺ Limpiar</button>
+        </div>
+      </div>
+      <div class="controls-filters-row">
+        <div class="filter-item-box"><label for="filter-price-range">Precio Máx: <b id="price-range-val">$500.000 ARS</b></label><input type="range" id="filter-price-range" min="50000" max="500000" step="10000" value="500000" oninput="updatePriceFilterVal(this.value)"></div>
+        <div class="filter-item-box"><label for="filter-color-select">Color:</label><select id="filter-color-select" onchange="filterProducts()"><option value="todos">Todos</option><option value="negro">Negro</option><option value="carey">Carey / Marrón</option><option value="dorado">Dorado</option><option value="plateado">Plateado</option><option value="rojo">Rojo Ferrari</option></select></div>
+      </div>
+    </section>
+    <section class="product-grid" id="product-grid" aria-label="Productos"></section>
+  </div>
+  <section class="reviews-section"><h2 class="section-title-center">LO QUE DICEN NUESTROS CLIENTES</h2><p class="section-subtitle-center">Más de 5.000 lentes entregados</p><div class="reviews-grid"><article class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p class="review-text">"La colección Ferrari con fibra de carbono supera cualquier expectativa."</p><div class="review-author">— Lucas M. <span>(Verificado)</span></div></article><article class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Asesoramiento por WhatsApp perfecto. Muy cómodos."</p><div class="review-author">— Camila G. <span>(Verificada)</span></div></article><article class="review-card"><div class="review-stars">⭐⭐⭐⭐⭐</div><p class="review-text">"Llegó en 48hs a Catamarca, impecable."</p><div class="review-author">— Rai B. <span>(Verificado)</span></div></article></div></section>
+  <section class="faq-section"><h2 class="section-title-center">PREGUNTAS FRECUENTES</h2><div id="faq-container"></div></section>
+</main>
+
+<footer><div class="footer-grid"><div class="footer-col"><h4>MENSH VISION</h4><p>Tienda oficial de anteojos con protección UV400 y cristales polarizados. Colección exclusiva Scuderia FERRARI.</p></div><div class="footer-col"><h4>CATEGORÍAS</h4><a href="#" onclick="selectCategory('Clásicos');return false">Clásicos</a><a href="#" onclick="selectCategory('Scuderia FERRARI');return false">Ferrari</a><a href="#" onclick="selectCategory('Mujer');return false">Mujer</a><a href="#" onclick="selectCategory('Hombre');return false">Hombre</a></div><div class="footer-col"><h4>AYUDA</h4><a href="#" onclick="openOriginalityModal();return false">Guía de Originalidad</a><p>Envíos a todo el país</p><p>15 días de cambio</p></div><div class="footer-col"><h4>CONTACTO</h4><p id="footer-phone">WhatsApp</p><p id="footer-mp">MercadoPago</p><p>Catamarca, Argentina</p></div></div><div style="text-align:center;color:#6b7280;font-size:.75rem;border-top:1px solid #1f2937;padding-top:16px">© 2026 MENSH VISION. Todos los derechos reservados. | v2.0</div></footer>
+
+<button class="floating-wa" onclick="openFloatingWhatsApp()" aria-label="WhatsApp">💬</button>
+
+<!-- Drawers -->
+<div class="cat-drawer-overlay" id="cat-overlay" onclick="toggleCategoryMenu()"></div>
+<div class="cat-drawer" id="cat-drawer"><div class="cat-drawer-header"><h3>☰ Categorías</h3><button class="cat-drawer-close" onclick="toggleCategoryMenu()">✕</button></div><div class="cat-drawer-list" id="cat-drawer-list"></div></div>
+
+<div class="cart-drawer-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cart-drawer"><div class="cart-header"><h3 style="font-family:var(--font-heading);font-weight:900;letter-spacing:1px">🛒 CARRITO</h3><button onclick="toggleCart()" style="background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer">✕</button></div><div class="cart-items" id="cart-items"></div><div class="cart-footer"><div id="cart-total" style="font-weight:900;font-size:1.2rem;margin-bottom:12px"></div><div id="cart-user-status" style="font-size:.8rem;color:#666;margin-bottom:12px"></div><input id="customer-name" placeholder="Nombre completo *" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:8px"><input id="customer-phone" placeholder="WhatsApp * 549..." style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:8px"><input id="customer-email" placeholder="Email" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:8px"><input id="customer-address" placeholder="Dirección + Localidad *" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:12px"><button class="btn-add" onclick="sendWhatsAppOrder()" style="margin-bottom:8px">📲 PEDIR POR WHATSAPP</button><button class="btn-add" onclick="payWithMercadoPago()" style="background:#fff;color:#000;border:1px solid #000">💳 PAGAR CON MERCADOPAGO</button></div></div>
+
+<!-- Product Modal -->
+<dialog class="modal-dialog" id="product-modal" style="max-width:900px"><button class="modal-close" onclick="closeModal('product-modal')">✕</button><div style="display:grid;grid-template-columns:1.2fr .8fr;gap:24px" id="product-modal-grid"><div><img id="modal-img" style="width:100%;height:380px;object-fit:contain;background:#f5f5f7;border-radius:12px" alt=""><div id="modal-thumbnails" style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"></div><div style="margin-top:16px"><button onclick="toggleSizeGuide()" style="background:none;border:1px solid #d1d5db;padding:6px 12px;border-radius:20px;font-size:.78rem;font-weight:700;cursor:pointer">📏 Guía de talles</button><div id="guide-box" style="display:none;margin-top:12px;background:#f8fafc;border:1px solid #e2e8f0;padding:12px;border-radius:8px;font-size:.82rem;line-height:1.5">Medida estándar: 50-22-150. Si es tu primera compra, escribinos por WhatsApp y te asesoramos.</div></div></div><div><div id="modal-cat" style="font-size:.7rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--accent-red);margin-bottom:6px"></div><h2 id="modal-title" style="font-family:var(--font-heading);font-size:1.6rem;font-weight:900;line-height:1.15;margin-bottom:10px"></h2><div id="modal-price" style="font-family:var(--font-heading);font-size:1.4rem;font-weight:900;margin-bottom:16px"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px"><div><label style="font-size:.75rem;font-weight:800;text-transform:uppercase">Talle</label><select id="modal-size" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-top:4px"><option>M - Estándar</option><option>L - Grande</option><option>S - Chico</option></select></div><div><label style="font-size:.75rem;font-weight:800;text-transform:uppercase">Color</label><select id="modal-color" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-top:4px"><option>Negro</option><option>Carey</option><option>Dorado</option><option>Rojo Ferrari</option></select></div></div><button class="btn-add" onclick="addCurrentModalToCart()">🛒 AGREGAR AL CARRITO</button><div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:.7rem;background:#f2f3f5;padding:4px 10px;border-radius:20px;font-weight:700">🛡️ UV400</span><span style="font-size:.7rem;background:#f2f3f5;padding:4px 10px;border-radius:20px;font-weight:700">✈️ Envío Gratis</span><span style="font-size:.7rem;background:#f2f3f5;padding:4px 10px;border-radius:20px;font-weight:700">🔄 15 días cambio</span></div></div></div></dialog>
+
+<dialog class="modal-dialog" id="user-modal" style="max-width:480px"><button class="modal-close" onclick="closeModal('user-modal')">✕</button><div id="user-auth-view"><div style="display:flex;gap:8px;margin-bottom:18px"><button id="tab-btn-reg" class="filter-pill-btn active" onclick="switchUserTab('reg')">Crear Cuenta</button><button id="tab-btn-login" class="filter-pill-btn" onclick="switchUserTab('login')">Ingresar</button></div><form id="register-form" onsubmit="handleRegister(event)"><input id="reg-name" required placeholder="Nombre completo" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:8px"><input id="reg-email" type="email" required placeholder="Email" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:8px"><input id="reg-phone" required placeholder="WhatsApp" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:8px"><input id="reg-address" required placeholder="Dirección" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:8px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px"><input id="reg-dob" type="date" required style="padding:10px;border:1px solid #d1d5db;border-radius:8px"><select id="reg-gender" style="padding:10px;border:1px solid #d1d5db;border-radius:8px"><option value="No especifica">Género</option><option>Masculino</option><option>Femenino</option><option>No binario</option></select></div><input id="reg-pass" type="password" required placeholder="Contraseña" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:12px"><button class="btn-add">Crear cuenta</button></form><form id="login-form" style="display:none" onsubmit="handleLogin(event)"><input id="login-email" type="email" required placeholder="Email" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:8px"><input id="login-pass" type="password" required placeholder="Contraseña" style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;margin-bottom:12px"><button class="btn-add">Ingresar</button></form></div><div id="user-logged-in-view" style="display:none"><h3 style="font-family:var(--font-heading);font-weight:900;margin-bottom:12px">Mi Perfil</h3><div style="display:grid;gap:6px;font-size:.85rem"><div><b>Nombre:</b> <span id="prof-name"></span></div><div><b>Email:</b> <span id="prof-email"></span></div><div><b>WhatsApp:</b> <span id="prof-phone"></span></div><div><b>Dirección:</b> <span id="prof-address"></span></div><div><b>Nacimiento:</b> <span id="prof-dob"></span> (<span id="prof-age"></span> años)</div><div><b>Género:</b> <span id="prof-gender"></span></div></div><button class="btn-add" style="margin-top:16px;background:#fff;color:#000;border:1px solid #000" onclick="logoutUser()">Cerrar sesión</button></div></dialog>
+
+<dialog class="modal-dialog" id="mp-payment-modal" style="max-width:420px;text-align:center"><button class="modal-close" onclick="closeModal('mp-payment-modal')">✕</button><h3 style="font-family:var(--font-heading);font-weight:900;margin-bottom:8px">Pagar con MercadoPago</h3><p style="font-size:.85rem;color:#666;margin-bottom:16px">Total a pagar:</p><div id="mp-modal-total" style="font-size:1.6rem;font-weight:900;margin-bottom:16px"></div><div style="background:#f8fafc;border:1px dashed #d1d5db;padding:12px;border-radius:8px;margin-bottom:12px"><div style="font-size:.7rem;font-weight:800;text-transform:uppercase;color:#888">ALIAS</div><div id="mp-modal-alias" style="font-weight:900;font-size:1.1rem;margin:6px 0"></div><button class="filter-pill-btn" onclick="copyMPAlias()">📋 Copiar alias</button></div><button class="btn-add" onclick="openMPDirectLink()" style="margin-bottom:8px">🔗 Abrir link de pago</button><p style="font-size:.75rem;color:#888">Luego envíanos el comprobante por WhatsApp.</p></dialog>
+
+<dialog class="modal-dialog" id="welcome-video-modal" style="max-width:720px;padding:28px;background:#0b0c0e;color:#fff"><div style="text-align:center"><button class="modal-close" onclick="closeModal('welcome-video-modal')" style="color:#fff;background:rgba(255,255,255,.15);top:14px;right:18px">✕</button><div style="font-family:var(--font-heading);font-size:1.3rem;font-weight:900;letter-spacing:1.5px;margin-bottom:18px;text-transform:uppercase">MENSH VISION<span style="color:#d32f2f">.</span></div><figure style="width:100%;border-radius:14px;overflow:hidden;background:#111"><video id="popup-welcome-video" autoplay muted loop playsinline style="width:100%;max-height:65vh;display:block;object-fit:cover"></video></figure><button onclick="closeModal('welcome-video-modal')" class="btn-add" style="margin-top:22px;background:#fff;color:#000;font-weight:900">ENTRAR Y EXPLORAR COLECCIÓN</button></div></dialog>
+
+<div class="toast-container" id="toast-container"></div>
+
+<script>
+// ========= V2 CORE - SIN ESPACIOS EN KEYS, MIGRACION AUTO, SIN ADMIN EN FRONT =========
+const STORAGE_KEY = 'mensh_vision_store_v2';
+const CART_KEY = 'mensh_vision_cart_v2';
+const USERS_KEY = 'mensh_vision_users_v2';
+const CURRENT_USER_KEY = 'mensh_vision_current_user_v2';
+const WISHLIST_KEY = 'mensh_vision_wishlist_v2';
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxTXrdHq6tlY6wTxgxJgmQoWXdSYysDHskhpU2_25XvxPBA1AZ7wbgCqQ0hBEtRSG5h/exec";
+
+const DEFAULT_DATA = {
+  version: 2,
+  config: {
+    whatsappPhone: "5491112345678",
+    mpAlias: "mensh.vision.mp",
+    mpLink: "https://mpago.la/ejemplo",
+    announcementBanner: "🚚 Envíos gratis a todo el país | 💳 3 y 6 Cuotas Sin Interés | 🏎️ Colección Scuderia FERRARI Disponible",
+    showWelcomeVideo: true,
+    welcomeVideo: "https://www.w3schools.com/html/mov_bbb.mp4"
+  },
+  categories: {
+    "Clásicos": ["Aviador", "Wayfarer", "Club Master"],
+    "Modernos": ["Hexagonal", "Justin", "Asian Fit"],
+    "Mujer": ["Cat Eye", "Amore Fashion"],
+    "Hombre": ["Executive", "Sport"],
+    "Scuderia FERRARI": ["Carbon Fiber", "Chromance", "Rosso Corsa"],
+    "Últimos lanzamientos": ["Colección 2026", "Bio Based"],
+    "Edición Limitada": ["Gold Plated", "Titanium"]
+  },
+  originalityGuide: [
+    { title: "1. El Logo en la Lente", text: "Todas las gafas originales tienen el logo RB grabado con láser en la lente izquierda. Nítido y perceptible al tacto.", img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=500&q=80" },
+    { title: "2. Calidad de Materiales", text: "Marcos sólidos, sin rebabas, bisagras firmes. Acetato y metal de primera calidad.", img: "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=500&q=80" }
+  ],
+  carouselSlides: [
+    { title: "SCUDERIA FERRARI COLLECTION", subtitle: "Edición limitada Motorsport con fibra de carbono y cristales Chromance.", image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=1400&q=80", buttonText: "VER COLECCIÓN FERRARI", filterCat: "Scuderia FERRARI" },
+    { title: "NUEVA COLECCIÓN MENSH VISION 2026", subtitle: "Máxima protección UV400 y cristales polarizados HD.", image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1400&q=80", buttonText: "EXPLORAR CATÁLOGO", filterCat: "Clásicos" }
+  ],
+  products: [
+    { id: 101, name: "RB3647N SCUDERIA FERRARI", categories: ["Scuderia FERRARI", "Edición Limitada"], price: 346216, badge: "Edición Limitada", img: "https://placehold.co/600x400/f0f0f0/e10600?text=FERRARI+RB3647N", gallery: [], colorTags: ["rojo","negro"], size: "M" },
+    { id: 102, name: "WAYFARER FERRARI CARBON", categories: ["Scuderia FERRARI", "Hombre", "Modernos"], price: 358900, badge: "Polarizado", img: "https://placehold.co/600x400/f0f0f0/d32f2f?text=WAYFARER+CARBON", gallery: [], colorTags: ["negro"], size: "M" },
+    { id: 1, name: "ASIAN FIT CAREY", categories: ["Clásicos", "Mujer"], price: 259000, badge: "CLÁSICO", img: "https://placehold.co/600x400/f0f0f0/8B4513?text=ASIAN+FIT", gallery: [], colorTags: ["carey"], size: "M" },
+    { id: 2, name: "AVIADOR NEGRO POLARIZADO", categories: ["Clásicos", "Hombre"], price: 275000, badge: "Polarizado", img: "https://placehold.co/600x400/111111/ffffff?text=AVIADOR+NEGRO", gallery: [], colorTags: ["negro"], size: "M" },
+    { id: 3, name: "CLUB MASTER DORADO", categories: ["Clásicos", "Edición Limitada"], price: 295000, badge: "Más Vendido", img: "https://placehold.co/600x400/f5e6c8/000000?text=CLUB+MASTER", gallery: [], colorTags: ["dorado"], size: "M" },
+    { id: 4, name: "CAT EYE MUJER ROSA", categories: ["Mujer", "Modernos"], price: 242000, badge: "Nuevo", img: "https://placehold.co/600x400/ffb6d9/000000?text=CAT+EYE", gallery: [], colorTags: ["plateado","dorado"], size: "S" }
+  ],
+  faqs: [
+    { q: "¿Son originales?", a: "Sí, 100% originales con estuche, paño y certificado. Podés verificar con la guía de originalidad." },
+    { q: "¿Tienen protección UV400?", a: "Todos nuestros cristales tienen filtro UV400 real, no solo tinte." },
+    { q: "¿Hacen envíos a Catamarca?", a: "Sí, envío gratis a todo el país con seguimiento. 48-72hs." },
+    { q: "¿Puedo cambiar el talle?", a: "Tenés 15 días de cambio gratis. Te asesoramos por WhatsApp antes de comprar." }
+  ]
+};
+
+function escapeHTML(str){ if(str==null) return ''; return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;"); }
+function calculateAge(dob){ if(!dob) return ''; const d=new Date(dob); const diff=Date.now()-d.getTime(); return Math.floor(new Date(diff).getUTCFullYear()-1970); }
+
+// MIGRACION AUTOMATICA V1 -> V2
+function migrateV1(){
+  try{
+    const oldRaw = localStorage.getItem('MENSH VISION_store_data');
+    if(oldRaw){
+      const old = JSON.parse(oldRaw);
+      const migrated = {
+        version:2,
+        config:{
+          whatsappPhone: old.whatsappPhone || DEFAULT_DATA.config.whatsappPhone,
+          mpAlias: old.mpAlias || DEFAULT_DATA.config.mpAlias,
+          mpLink: old.mpLink || DEFAULT_DATA.config.mpLink,
+          announcementBanner: old.announcementBanner || DEFAULT_DATA.config.announcementBanner,
+          showWelcomeVideo: old.showWelcomeVideo ?? true,
+          welcomeVideo: old.welcomeVideo || DEFAULT_DATA.config.welcomeVideo
+        },
+        categories: old.categories || DEFAULT_DATA.categories,
+        originalityGuide: old.originalityGuide || DEFAULT_DATA.originalityGuide,
+        carouselSlides: old.carouselSlides || DEFAULT_DATA.carouselSlides,
+        products: (old.products||[]).map(p=>({ ...p, categories: p.categories||(p.category?[p.category]:["Clásicos"]), colorTags: p.colorTags||["negro"], gallery: p.gallery||[] })),
+        faqs: DEFAULT_DATA.faqs
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
+      console.log("Migrado V1 -> V2");
+      return migrated;
+    }
+  }catch(e){ console.warn("Migración fallida",e); }
+  return null;
+}
+
+let storeData = (()=>{ 
+  const m=migrateV1();
+  if(m) return m;
+  try{ const raw=localStorage.getItem(STORAGE_KEY); return raw?JSON.parse(raw):DEFAULT_DATA; }catch{ return DEFAULT_DATA; }
+})();
+function saveStoreData(){ 
+  try{
+    const str=JSON.stringify(storeData);
+    if(str.length>4000000){ showToast("⚠️ Datos muy pesados, usá URLs no base64","warning"); }
+    localStorage.setItem(STORAGE_KEY,str);
+  }catch(e){ 
+    if(e.name==='QuotaExceededError'){ showToast("❌ Almacenamiento lleno. Exportá y limpiá imágenes.","error"); }
+  }
+}
+
+// Estado global
+let registeredUsers = JSON.parse(localStorage.getItem(USERS_KEY)||'[]');
+let currentUser = JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null');
+let cart = JSON.parse(localStorage.getItem(CART_KEY)||'[]');
+let wishlist = JSON.parse(localStorage.getItem(WISHLIST_KEY)||'[]');
+let activeCategory='Todos', activeSubcategory='Todos', maxPriceFilter=500000, showOnlyPolarized=false, searchQuery='', currentModalProduct=null;
+let carouselInterval=null, currentSlide=0;
+
+function sendToGoogleDrive(action,payload){
+  if(!GOOGLE_SCRIPT_URL) return;
+  fetch(GOOGLE_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action,...payload})}).catch(()=>{});
+}
+function recordSaleToDrive(){
+  if(cart.length===0) return;
+  sendToGoogleDrive('sale',{items:cart,total:cart.reduce((a,i)=>a+i.price*i.quantity,0),user:currentUser,ts:new Date().toISOString()});
+}
+
+function openModal(id){ const d=document.getElementById(id); if(d?.showModal) d.showModal(); else if(d) d.style.display='flex'; }
+function closeModal(id){ const d=document.getElementById(id); if(d?.close) d.close(); else if(d) d.style.display='none'; }
+function showToast(msg,type='info'){
+  const c=document.getElementById('toast-container'); const t=document.createElement('div'); t.className=`toast toast-${type}`; t.innerHTML=`<span>${escapeHTML(msg)}</span>`; c.appendChild(t);
+  setTimeout(()=>t.classList.add('show'),10); setTimeout(()=>{ t.classList.remove('show'); setTimeout(()=>t.remove(),300); },3200);
+}
+function updateUserUI(){
+  const nav=document.getElementById('nav-user-name'), auth=document.getElementById('user-auth-view'), logged=document.getElementById('user-logged-in-view'), cartStatus=document.getElementById('cart-user-status');
+  if(currentUser){
+    nav.innerText=currentUser.name.split(' ')[0];
+    if(auth) auth.style.display='none'; if(logged) logged.style.display='block';
+    const set=(id,val)=>{ const el=document.getElementById(id); if(el) el.innerText=val||''; };
+    set('prof-name',currentUser.name); set('prof-email',currentUser.email); set('prof-phone',currentUser.phone); set('prof-address',currentUser.address); set('prof-dob',currentUser.dob); set('prof-age',currentUser.age); set('prof-gender',currentUser.gender);
+    if(cartStatus) cartStatus.innerHTML=`Comprando como <b>${escapeHTML(currentUser.name)}</b>`;
+  } else {
+    if(nav) nav.innerText='Mi Cuenta'; if(auth) auth.style.display='block'; if(logged) logged.style.display='none'; if(cartStatus) cartStatus.innerText='Iniciá sesión para guardar tu compra';
+  }
+  const fp=document.getElementById('footer-phone'); if(fp) fp.innerText=`WhatsApp: ${storeData.config.whatsappPhone}`; const fm=document.getElementById('footer-mp'); if(fm) fm.innerText=`Alias MP: ${storeData.config.mpAlias}`;
+}
+function renderBanner(){ document.getElementById('announcement-text').innerText=storeData.config.announcementBanner; }
+
+// CAROUSEL
+function renderCarousel(){
+  const container=document.getElementById('carousel-wrapper'), dots=document.getElementById('carousel-dots');
+  container.querySelectorAll('.carousel-slide').forEach(e=>e.remove()); dots.innerHTML='';
+  if(!storeData.carouselSlides?.length){ container.style.display='none'; stopCarouselAutoplay(); return; }
+  container.style.display='block';
+  storeData.carouselSlides.forEach((slide,i)=>{
+    const div=document.createElement('article'); div.className=`carousel-slide ${i===0?'active':''}`; div.style.backgroundImage=`url('${escapeHTML(slide.image)}')`;
+    div.innerHTML=`<div class="carousel-overlay"></div><div class="carousel-content"><h2>${escapeHTML(slide.title)}</h2><p>${escapeHTML(slide.subtitle)}</p><button class="carousel-btn" onclick="selectCategory('${escapeHTML(slide.filterCat)}')">${escapeHTML(slide.buttonText)}</button></div>`;
+    container.insertBefore(div,dots);
+    const dot=document.createElement('button'); dot.className=`dot ${i===0?'active':''}`; dot.onclick=()=>setCarouselSlide(i); dot.setAttribute('aria-label',`Slide ${i+1}`); dots.appendChild(dot);
+  });
+  startCarouselAutoplay();
+}
+function setCarouselSlide(i){
+  const slides=document.querySelectorAll('.carousel-slide'), dots=document.querySelectorAll('.dot');
+  slides.forEach(s=>s.classList.remove('active')); dots.forEach(d=>d.classList.remove('active'));
+  if(slides[i]){ slides[i].classList.add('active'); dots[i]?.classList.add('active'); currentSlide=i; }
+}
+function nextCarouselSlide(){ const total=document.querySelectorAll('.carousel-slide').length; if(!total) return; setCarouselSlide((currentSlide+1)%total); }
+function startCarouselAutoplay(){ stopCarouselAutoplay(); carouselInterval=setInterval(nextCarouselSlide,5500); }
+function stopCarouselAutoplay(){ if(carouselInterval) clearInterval(carouselInterval); }
+
+// CATEGORIES
+function toggleCategoryMenu(){ const d=document.getElementById('cat-drawer'), o=document.getElementById('cat-overlay'); d.classList.toggle('open'); o.style.display=d.classList.contains('open')?'block':'none'; }
+function renderCategoryDrawerItems(){
+  const list=document.getElementById('cat-drawer-list'); const cats=Object.keys(storeData.categories);
+  const counts={}; storeData.products.forEach(p=>{ (p.categories||[]).forEach(c=>counts[c]=(counts[c]||0)+1); });
+  list.innerHTML=`<button class="cat-drawer-item ${activeCategory==='Todos'?'active':''}" onclick="selectCategory('Todos');toggleCategoryMenu()"><span>Todos</span><span class="cat-count">${storeData.products.length}</span></button>` + cats.map(cat=>`<button class="cat-drawer-item ${activeCategory===cat?'active':''}" onclick="selectCategory('${escapeHTML(cat)}');toggleCategoryMenu()"><span>${escapeHTML(cat)}</span><span class="cat-count">${counts[cat]||0}</span></button>`).join('');
+}
+function selectCategory(cat){
+  activeCategory=cat; activeSubcategory='Todos'; document.body.classList.toggle('ferrari-mode',cat==='Scuderia FERRARI'); renderCategoryDrawerItems(); filterProducts(); window.scrollTo({top:document.getElementById('main-content').offsetTop-80,behavior:'smooth'});
+}
+function filterReset(){ activeCategory='Todos'; activeSubcategory='Todos'; showOnlyPolarized=false; searchQuery=''; maxPriceFilter=500000; document.getElementById('search-input').value=''; document.getElementById('filter-price-range').value=500000; document.getElementById('filter-color-select').value='todos'; document.getElementById('filter-polarized-btn').classList.remove('active'); document.body.classList.remove('ferrari-mode'); updatePriceFilterVal(500000); renderCategoryDrawerItems(); filterProducts(); }
+
+// FILTERS
+function onSearchInput(){ searchQuery=document.getElementById('search-input').value.toLowerCase().trim(); filterProducts(); }
+function togglePolarizedFilter(){ showOnlyPolarized=!showOnlyPolarized; document.getElementById('filter-polarized-btn').classList.toggle('active',showOnlyPolarized); filterProducts(); }
+function updatePriceFilterVal(val){ maxPriceFilter=parseFloat(val); document.getElementById('price-range-val').innerText=`$${maxPriceFilter.toLocaleString('es-AR')} ARS`; filterProducts(); }
+function filterProducts(){
+  let filtered=[...storeData.products];
+  if(activeCategory!=='Todos') filtered=filtered.filter(p=>p.categories?.includes(activeCategory));
+  if(activeSubcategory!=='Todos') filtered=filtered.filter(p=>p.categories?.includes(activeSubcategory));
+  if(searchQuery) filtered=filtered.filter(p=>p.name.toLowerCase().includes(searchQuery) || (p.categories||[]).join(' ').toLowerCase().includes(searchQuery));
+  if(showOnlyPolarized) filtered=filtered.filter(p=> (p.badge||'').toLowerCase().includes('polarizado') || (p.name||'').toLowerCase().includes('polarizado'));
+  filtered=filtered.filter(p=>p.price<=maxPriceFilter);
+  const colorFilter=document.getElementById('filter-color-select')?.value||'todos';
+  if(colorFilter!=='todos'){ filtered=filtered.filter(p=>{ const tags=(p.colorTags||[]).join(' ').toLowerCase(); return tags.includes(colorFilter) || p.name.toLowerCase().includes(colorFilter); }); }
+  const sort=document.getElementById('sort-select')?.value||'default';
+  if(sort==='price-asc') filtered.sort((a,b)=>a.price-b.price);
+  else if(sort==='price-desc') filtered.sort((a,b)=>b.price-a.price);
+  else if(sort==='name-asc') filtered.sort((a,b)=>a.name.localeCompare(b.name));
+  renderProducts(filtered);
+}
+function renderProducts(list){
+  const grid=document.getElementById('product-grid'), countEl=document.getElementById('results-count');
+  let label=`Mostrando ${list.length} modelo(s)`; if(activeCategory!=='Todos') label+=` en ${activeCategory}`; countEl.innerText=label;
+  if(list.length===0){ grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px;color:#888">No se encontraron modelos. Probá limpiar filtros.</div>`; return; }
+  grid.innerHTML=list.map(p=>{
+    const isFav=wishlist.includes(p.id); const isNuevo=(p.badge||'').toLowerCase().includes('nuevo'); const isFerrari=p.categories?.includes('Scuderia FERRARI');
+    let variants=[p.img]; if(p.gallery?.length){ p.gallery.forEach(g=>{ if(g && !variants.includes(g)) variants.push(g); }); }
+    const swatches=variants.map((u,i)=>`<button class="swatch-item ${i===0?'active':''}" data-img="${escapeHTML(u)}" onmouseenter="changeCardImage(event,${p.id},this)" onclick="changeCardImage(event,${p.id},this)" aria-label="Color ${i+1}"><img src="${escapeHTML(u)}" alt="" loading="lazy" onerror="this.src='https://placehold.co/300x200?text=MENSH'"></button>`).join('');
+    return `<article class="product-card" onclick="openProductModal(${p.id})" tabindex="0" role="button" aria-label="${escapeHTML(p.name)}">
+      <div class="card-top-bar">${isNuevo?'<span class="badge-text-red">NUEVO</span>':(p.badge && p.badge!=='Ninguno'?`<span class="${isFerrari?'badge-text-red':'badge-text-dark'}">${escapeHTML(p.badge)}</span>`:'<span></span>')}<button class="btn-wishlist" onclick="toggleWishlist(event,${p.id})" aria-label="Favorito">${isFav?'❤️':'♡'}</button></div>
+      <figure class="product-img-container"><img src="${escapeHTML(p.img)}" id="prod-img-${p.id}" loading="lazy" class="product-img" alt="${escapeHTML(p.name)}" onerror="this.src='https://placehold.co/600x400?text=MENSH+VISION'"></figure>
+      <div class="product-card-bottom"><h3 class="product-title-clean">${escapeHTML(p.name)}</h3><div class="product-colors-info">${isFerrari?'🏎️ Scuderia FERRARI':'1 / '+(variants.length)+' Colors'}</div><div class="swatch-bar-wrapper">${swatches}</div><div style="margin-top:8px;font-weight:900;font-size:1.1rem;color:#111;font-family:var(--font-heading)">$${p.price.toLocaleString('es-AR')} ARS</div></div></article>`;
+  }).join('');
+  // schema
+  const schema={ "@context":"https://schema.org", "@type":"ItemList", "itemListElement": list.slice(0,20).map((p,i)=>({ "@type":"Product", "position":i+1, "name":p.name, "image":p.img, "offers":{ "@type":"Offer", "price":p.price, "priceCurrency":"ARS", "availability":"https://schema.org/InStock" } })) };
+  document.getElementById('schema-store').textContent=JSON.stringify(schema);
+}
+function changeCardImage(e,id,el){
+  e.stopPropagation(); const url=el.dataset.img; const img=document.getElementById(`prod-img-${id}`); if(img) img.src=url;
+  el.parentElement.querySelectorAll('.swatch-item').forEach(s=>s.classList.remove('active')); el.classList.add('active');
+}
+function toggleWishlist(e,id){ e.stopPropagation(); const idx=wishlist.indexOf(id); if(idx>-1){ wishlist.splice(idx,1); showToast("Quitado de favoritos","info"); } else { wishlist.push(id); showToast("Agregado a favoritos","success"); } localStorage.setItem(WISHLIST_KEY,JSON.stringify(wishlist)); filterProducts(); }
+
+// PRODUCT MODAL
+function openProductModal(id){
+  currentModalProduct=storeData.products.find(p=>p.id===id); if(!currentModalProduct) return;
+  document.getElementById('modal-cat').innerText=(currentModalProduct.categories||[]).join(' • ');
+  document.getElementById('modal-title').innerText=currentModalProduct.name;
+  document.getElementById('modal-price').innerText=`$${currentModalProduct.price.toLocaleString('es-AR')} ARS`;
+  document.getElementById('modal-img').src=currentModalProduct.img;
+  document.getElementById('guide-box').style.display='none';
+  let gallery=[currentModalProduct.img]; if(currentModalProduct.gallery?.length){ currentModalProduct.gallery.forEach(g=>{ if(g && !gallery.includes(g)) gallery.push(g); }); }
+  document.getElementById('modal-thumbnails').innerHTML=gallery.map((u,i)=>`<button onclick="setModalMainImage('${escapeHTML(u)}',this)" style="border:${i===0?'2px solid #000':'1px solid #ddd'};border-radius:6px;overflow:hidden;width:64px;height:48px;background:#fff"><img src="${escapeHTML(u)}" style="width:100%;height:100%;object-fit:contain" alt=""></button>`).join('');
+  // responsive grid fix
+  const grid=document.getElementById('product-modal-grid'); if(window.innerWidth<700) grid.style.gridTemplateColumns='1fr'; else grid.style.gridTemplateColumns='1.2fr .8fr';
+  openModal('product-modal');
+}
+function setModalMainImage(url,el){ document.getElementById('modal-img').src=url; document.querySelectorAll('#modal-thumbnails button').forEach(b=>b.style.border='1px solid #ddd'); if(el) el.style.border='2px solid #000'; }
+function addCurrentModalToCart(){
+  if(!currentModalProduct) return;
+  const size=document.getElementById('modal-size').value, color=document.getElementById('modal-color').value;
+  const existing=cart.find(i=>i.id===currentModalProduct.id && i.size===size && i.color===color);
+  if(existing) existing.quantity+=1; else cart.push({ id:currentModalProduct.id, name:currentModalProduct.name, price:currentModalProduct.price, img:currentModalProduct.img, size, color, quantity:1 });
+  saveCart(); updateCartUI(); showToast("Agregado al carrito","success"); closeModal('product-modal'); toggleCart(true);
+}
+
+// CART
+function toggleCart(forceOpen){ const d=document.getElementById('cart-drawer'), o=document.getElementById('cart-overlay'); const shouldOpen=forceOpen===true?true:!d.classList.contains('open'); if(shouldOpen){ d.classList.add('open'); o.style.display='block'; } else { d.classList.remove('open'); o.style.display='none'; } }
+function updateCartUI(){
+  const count=document.getElementById('cart-count'), items=document.getElementById('cart-items'), totalEl=document.getElementById('cart-total');
+  const totalQty=cart.reduce((a,i)=>a+i.quantity,0), total=cart.reduce((a,i)=>a+i.price*i.quantity,0);
+  count.innerText=totalQty; 
+  if(cart.length===0){ items.innerHTML=`<div style="text-align:center;padding:40px;color:#888">Tu carrito está vacío</div>`; totalEl.innerText=''; return; }
+  items.innerHTML=cart.map((it,idx)=>`<div class="cart-item"><img src="${escapeHTML(it.img)}" alt=""><div style="flex:1"><div style="font-weight:800;font-size:.85rem">${escapeHTML(it.name)}</div><div style="font-size:.75rem;color:#666">${escapeHTML(it.size)} • ${escapeHTML(it.color)}</div><div style="font-weight:800;margin-top:4px">$${it.price.toLocaleString('es-AR')} x ${it.quantity}</div></div><button onclick="removeCartItem(${idx})" style="background:none;border:none;cursor:pointer">✕</button></div>`).join('');
+  totalEl.innerText=`Total: $${total.toLocaleString('es-AR')} ARS`;
+}
+function removeCartItem(idx){ cart.splice(idx,1); saveCart(); updateCartUI(); }
+function saveCart(){ localStorage.setItem(CART_KEY,JSON.stringify(cart)); }
+
+// CHECKOUT
+function payWithMercadoPago(){ if(cart.length===0){ showToast("Carrito vacío","warning"); return; } recordSaleToDrive(); const total=cart.reduce((a,i)=>a+i.price*i.quantity,0); document.getElementById('mp-modal-total').innerText=`$${total.toLocaleString('es-AR')} ARS`; document.getElementById('mp-modal-alias').innerText=storeData.config.mpAlias||"mensh.vision.mp"; openModal('mp-payment-modal'); }
+function copyMPAlias(){ const alias=storeData.config.mpAlias||"mensh.vision.mp"; navigator.clipboard.writeText(alias).then(()=>showToast("Alias copiado: "+alias,"success")); }
+function openMPDirectLink(){ if(storeData.config.mpLink?.startsWith('http')) window.open(storeData.config.mpLink,'_blank'); else showToast("Usá el alias copiado en tu app MP","info"); }
+function sendWhatsAppOrder(){
+  if(cart.length===0){ showToast("Carrito vacío","warning"); return; }
+  const name=document.getElementById('customer-name').value.trim(), email=document.getElementById('customer-email').value.trim(), phone=document.getElementById('customer-phone').value.trim(), address=document.getElementById('customer-address').value.trim();
+  if(!name||!phone||!address){ showToast("Completa nombre, teléfono y dirección","warning"); return; }
+  recordSaleToDrive();
+  let msg=`🕶️ *NUEVO PEDIDO MENSH VISION v2*\n\n👤 *Cliente:* ${name}\n📞 *Tel:* ${phone}\n📍 *Dir:* ${address}\n`; if(email) msg+=`📧 *Mail:* ${email}\n`; msg+=`\n📋 *DETALLE:*\n`; let total=0; cart.forEach((it,i)=>{ const sub=it.price*it.quantity; total+=sub; msg+=`${i+1}. *${it.name}* (${it.size}, ${it.color}) x${it.quantity} = $${sub.toLocaleString('es-AR')}\n`; }); msg+=`\n💰 *TOTAL:* $${total.toLocaleString('es-AR')} ARS`;
+  const storePhone=(storeData.config.whatsappPhone||"").replace(/[^0-9]/g,''); window.open(`https://wa.me/${storePhone}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+// USER
+function openUserModal(){ openModal('user-modal'); }
+function switchUserTab(tab){ document.getElementById('tab-btn-reg').classList.toggle('active',tab==='reg'); document.getElementById('tab-btn-login').classList.toggle('active',tab==='login'); document.getElementById('register-form').style.display=tab==='reg'?'block':'none'; document.getElementById('login-form').style.display=tab==='login'?'block':'none'; }
+function handleRegister(e){
+  e.preventDefault(); const name=document.getElementById('reg-name').value.trim(), email=document.getElementById('reg-email').value.trim().toLowerCase(), phone=document.getElementById('reg-phone').value.trim(), address=document.getElementById('reg-address').value.trim(), dob=document.getElementById('reg-dob').value, gender=document.getElementById('reg-gender').value, pass=document.getElementById('reg-pass').value;
+  if(registeredUsers.some(u=>u.email===email)){ showToast("Email ya registrado","warning"); switchUserTab('login'); return; }
+  const newUser={ name,email,phone,address,dob,age:calculateAge(dob),gender,pass }; registeredUsers.push(newUser); localStorage.setItem(USERS_KEY,JSON.stringify(registeredUsers)); sendToGoogleDrive('register',{name,email,phone,address,dob,age:calculateAge(dob),gender}); loginUser(newUser); showToast("Cuenta creada","success");
+}
+function handleLogin(e){ e.preventDefault(); const email=document.getElementById('login-email').value.trim().toLowerCase(), pass=document.getElementById('login-pass').value; const user=registeredUsers.find(u=>u.email===email && u.pass===pass); if(user){ loginUser(user); showToast(`Bienvenido ${user.name.split(' ')[0]}`,"success"); } else showToast("Credenciales incorrectas","error"); }
+function loginUser(user){ currentUser=user; localStorage.setItem(CURRENT_USER_KEY,JSON.stringify(currentUser)); updateUserUI(); closeModal('user-modal'); }
+function logoutUser(){ currentUser=null; localStorage.removeItem(CURRENT_USER_KEY); updateUserUI(); closeModal('user-modal'); showToast("Sesión cerrada","info"); }
+function toggleSizeGuide(){ const b=document.getElementById('guide-box'); b.style.display=b.style.display==='none'?'block':'none'; }
+
+// ORIGINALITY + FAQ + VIDEO
+function renderOriginalityModalContent(){ const c=document.getElementById('orig-guide-list-container'); const items=storeData.originalityGuide||[]; if(!items.length){ c.innerHTML=`<div style="text-align:center;padding:30px;color:#888">Sin guía</div>`; return; } c.innerHTML=items.map(it=>`<article style="display:grid;grid-template-columns:1fr 240px;gap:24px;align-items:center;border-bottom:1px solid #f0f0f4;padding-bottom:26px"><div><h3 style="font-family:var(--font-heading);color:var(--accent-red);font-size:1.15rem;font-weight:800;margin-bottom:10px">${escapeHTML(it.title)}</h3><p style="font-size:.88rem;color:#444;line-height:1.6">${escapeHTML(it.text)}</p></div><img src="${escapeHTML(it.img)}" style="width:100%;height:150px;object-fit:cover;border-radius:14px;border:1px solid var(--border-color)" alt="" loading="lazy" onerror="this.src='https://placehold.co/500x300?text=MENSH'"></article>`).join(''); }
+function openOriginalityModal(){ renderOriginalityModalContent(); openModal('originality-modal'); }
+function renderFAQ(){ const c=document.getElementById('faq-container'); if(!c) return; c.innerHTML=(storeData.faqs||[]).map((f,i)=>`<div class="faq-item" id="faq-${i}"><button class="faq-question" onclick="toggleFaq(${i})"><span>${escapeHTML(f.q)}</span><span>+</span></button><div class="faq-answer">${escapeHTML(f.a)}</div></div>`).join(''); }
+function toggleFaq(i){ document.getElementById(`faq-${i}`)?.classList.toggle('open'); }
+function openFloatingWhatsApp(){ const phone=(storeData.config.whatsappPhone||"").replace(/[^0-9]/g,''); window.open(`https://wa.me/${phone}?text=${encodeURIComponent("¡Hola MENSH VISION! Quisiera hacer una consulta.")}`,'_blank'); }
+function initWelcomeVideoModal(){ if(storeData.config.showWelcomeVideo && storeData.config.welcomeVideo){ const v=document.getElementById('popup-welcome-video'); if(v){ v.src=storeData.config.welcomeVideo; v.muted=true; openModal('welcome-video-modal'); v.play().catch(()=>{}); } } }
+
+window.onload=()=>{
+  renderBanner(); renderCarousel(); renderCategoryDrawerItems(); filterProducts(); updateUserUI(); updateCartUI(); renderFAQ(); initWelcomeVideoModal();
+  document.querySelectorAll('dialog.modal-dialog').forEach(dialog=>{
+    dialog.addEventListener('click',(e)=>{
+      const r=dialog.getBoundingClientRect(); const isIn=r.top<=e.clientY && e.clientY<=r.top+r.height && r.left<=e.clientX && e.clientX<=r.left+r.width; if(!isIn) closeModal(dialog.id);
+    });
+  });
+  const wrapper=document.getElementById('carousel-wrapper'); if(wrapper){ wrapper.addEventListener('mouseenter',stopCarouselAutoplay); wrapper.addEventListener('mouseleave',startCarouselAutoplay); }
+  // cerrar con ESC ya lo hace dialog nativo
+};
+</script>
+</body>
+</html>
